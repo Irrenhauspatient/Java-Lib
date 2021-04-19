@@ -56,42 +56,12 @@ public class Lib_Digits {
      * @return String Formatierter String
      */
 
-    public static String numberFormatter(String format, int value) {
+    public static <T extends Number, K> String numberFormatter(K format, T value) {
 
-        DecimalFormat df = new DecimalFormat(format);
-        String s = df.format(value);
-
-        return s;
-    }
-
-    /**
-     * Formatiert und wandelt den Float nach einem bestimmten Format in einen String
-     * 
-     * @param format Die Stringformatierung
-     * @param value  Float-Wert
-     * @return String Formatierter String
-     */
-    public static String numberFormatter(String format, float value) {
-
-        DecimalFormat df = new DecimalFormat(format);
-        String s = df.format(value);
+        DecimalFormat df = new DecimalFormat(format.toString());
+        String s = df.format(value.doubleValue());
 
         return s;
     }
 
-    /**
-     * Formatiert und wandelt den Double nach einem bestimmten Format in einen
-     * String
-     * 
-     * @param format Die Stringformatierung
-     * @param value  Double-Wert
-     * @return String Formatierter String
-     */
-    public static String numberFormatter(String format, double value) {
-
-        DecimalFormat df = new DecimalFormat(format);
-        String s = df.format(value);
-
-        return s;
-    }
 }

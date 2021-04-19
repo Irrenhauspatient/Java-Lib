@@ -2,9 +2,9 @@ public class Person {
 
     public String vorname;
     public String nachname;
-    private double alter;
+    private int alter;
 
-    public Person(String vorname, String nachname, double alter) {
+    public Person(String vorname, String nachname, int alter) {
 
         setNachname(nachname);
         setVorname(vorname);
@@ -34,7 +34,7 @@ public class Person {
         return alter;
     }
 
-    public void setAlter(double alter) {
+    public void setAlter(int alter) {
 
         Lib_Digits.checkSpan(00, 99, alter, "alter");
         this.alter = alter;

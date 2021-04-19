@@ -16,7 +16,7 @@ public class Message {
      * @param fieldname
      * @return String
      */
-    public static <T extends Number, K> String errorWrongValueMin(T min, T value, K fieldname) {
+    public static <T> String errorWrongValueMin(T min, T value, T fieldname) {
         return String.format("Der eingegebene Wert bei %s ist: %s er unterschreitet %s", fieldname.toString(),
                 value.toString(), min.toString());
     }
@@ -26,7 +26,7 @@ public class Message {
      * @param fieldname
      * @return String
      */
-    public static <T extends Number, K> String errorWrongValueMax(T max, T value, K fieldname) {
+    public static <T> String errorWrongValueMax(T max, T value, T fieldname) {
         return String.format("Der eingegebene Wert bei %s ist: %s überschreitet %s", fieldname.toString(),
                 value.toString(), max.toString());
     }
