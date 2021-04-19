@@ -87,7 +87,6 @@ public class Lib_Digits {
 
         if (value instanceof Integer) {
             return Integer.toBinaryString(value.intValue());
-
         }
         if (value instanceof Float) {
             return Float.toBinaryString(value.floatValue());
