@@ -1,3 +1,9 @@
+/**
+ * ube14 Klasse mit statischen Methoden
+ * 
+ * @author Simon Klasen & Andreas Scheuer
+ * @version 0.1
+ */
 
 public class Lib_String {
 
@@ -7,11 +13,11 @@ public class Lib_String {
      * @param string Der zu prüfende String
      */
 
-    public static <T> void checkIfNullOrEmpty(T string, T fieldname) {
+    public static void checkIfNullOrEmpty(String string, String fieldname) {
         if (!string.toString().isEmpty() && !string.toString().isBlank()) {
             return;
         }
-        throw new IllegalArgumentException(Message.errorEmptyString(fieldname));
+        throw new IllegalArgumentException(Lib_Message.errorEmptyString(fieldname));
     }
 
     /**

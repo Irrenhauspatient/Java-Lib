@@ -36,7 +36,7 @@ public class Person {
 
     public void setAlter(int alter) {
 
-        Lib_Digits.checkSpan(00, 99, alter, "alter");
+        Lib_Digits.checkSpan(00, Integer.MAX_VALUE, alter, "alter");
         this.alter = alter;
 
     }
