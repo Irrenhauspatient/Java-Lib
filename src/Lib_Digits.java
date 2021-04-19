@@ -81,23 +81,4 @@ public class Lib_Digits {
         return s;
     }
 
-    public static String deziToBinary(int value) {
-
-        String sum = "";
-
-        int div = 2;
-        int mod = 2;
-
-        if (Math.floorDiv(value, div) == 0) {
-            sum += value % mod;
-
-            StringBuffer sb = new Stringbuffer();
-            sb = sum;
-            return sb.reverse();
-
-        }
-        sum += Math.floorDiv(value, div);
-        deziToBinary(value % mod);
-    }
-
 }
