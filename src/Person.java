@@ -1,0 +1,44 @@
+public class Person {
+
+    public String vorname;
+    public String nachname;
+    private double alter;
+
+    public Person(String vorname, String nachname, double alter) {
+
+        setNachname(nachname);
+        setVorname(vorname);
+        setAlter(alter);
+    }
+
+    public String getVorname() {
+        return vorname;
+
+    }
+
+    public void setVorname(String vorname) {
+        Lib_String.checkIfNullOrEmpty(vorname, "vorname");
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        Lib_String.checkIfNullOrEmpty(nachname, "nachname");
+        this.nachname = nachname;
+    }
+
+    public int getAlter() {
+        return alter;
+    }
+
+    public void setAlter(double alter) {
+
+        Lib_Digits.checkSpan(00, 99, alter, "alter");
+        this.alter = alter;
+
+    }
+
+}
