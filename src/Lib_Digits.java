@@ -81,4 +81,21 @@ public class Lib_Digits {
         return s;
     }
 
+    public static <T extends Number> String numbertoBinary(T value) {
+
+        String sum = "";
+
+        if (value instanceof Integer) {
+            return Integer.toBinaryString(value.intValue());
+
+        }
+        if (value instanceof Float) {
+            return Float.toBinaryString(value.floatValue());
+        }
+        if (value instanceof Double) {
+            return Double.toBinaryString(value.doubleValue());
+        }
+        return sum;
+    }
+
 }
