@@ -1,8 +1,9 @@
+
 public class Person {
 
     public String vorname;
     public String nachname;
-    private int alter;
+    public int alter;
 
     public Person(String vorname, String nachname, int alter) {
 
@@ -32,6 +33,7 @@ public class Person {
 
     public int getAlter() {
         return alter;
+
     }
 
     public void setAlter(int alter) {
