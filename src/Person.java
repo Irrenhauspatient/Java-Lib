@@ -27,6 +27,7 @@ public class Person {
     }
 
     public void setNachname(String nachname) {
+
         Lib_String.checkIfNullOrEmpty(nachname, "nachname");
         this.nachname = nachname;
     }

@@ -4,9 +4,5 @@ public class App {
 
         Person person = new Person("asdasd", "asdasdas", 99);
 
-        int[] a = new int[] { person.alter };
-
-        System.out.println(a.getClass().getTypeParameters()[0]);
-
     }
 }

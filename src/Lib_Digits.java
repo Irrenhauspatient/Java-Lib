@@ -1,5 +1,4 @@
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 /**
  * ube14 Klasse mit statischen Methoden
