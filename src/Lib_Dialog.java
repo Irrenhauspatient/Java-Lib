@@ -1,76 +1,71 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Lib_Dialog {
 
+    // TODO : Replace Dialog dialog with the Dialog Class name
+
     private static final int ENDE = 0;
     private int option = -1;
-
-    private Scanner input;
-
-    public Lib_Dialog() {
-        input = new Scanner(System.in);
-
-    }
+    private Dialog dialog;
+    private static Scanner input;
 
     /**
      * Eigentliche Startmethode
      */
 
-    public void start(ArrayList<String> menue) {
+    public void start(ArrayList<String> menue) throws ClassNotFoundException, NoSuchMethodException,
+            IllegalAccessException, InvocationTargetException, InstantiationException {
+        dialog = new Dialog();
+        input = new Scanner(System.in);
+        Class<?> cls = Class.forName("Dialog");
+        Object o = cls.getDeclaredConstructor().newInstance();
 
         while (option != ENDE) {
             try {
-                option = einlesenFunktion(menue);
-                ausfuehrenFunktion(option);
+                printMenue(menue);
+                option = chooseOption();
+                ausfuehrenFunktion(menue, option, o);
             } catch (IllegalArgumentException msg) {
                 System.out.println("\n" + msg);
             } catch (InputMismatchException msg) {
                 System.out.println("\n" + msg + ": Kein korrekter Wert");
                 input.nextLine();
             } catch (Exception msg) {
-                System.out.println("\n" + msg);
+                msg.printStackTrace();
             }
         }
     }
 
-    public int einlesenFunktion(ArrayList<String> menue) {
+    public static <T> void printMenue(ArrayList<T> arraylist) {
 
         StringBuilder sb = new StringBuilder();
         int optioncounter = 0;
 
-        for (String string : menue) {
+        for (T string : arraylist) {
 
             optioncounter++;
             sb.append(String.format("%d: %s\n", optioncounter, string));
 
         }
-        sb.append("\nBitte wählen sie eine Option\n");
         System.out.println(sb);
-
-        return input.nextInt();
 
     }
 
-    public void ausfuehrenFunktion(int option) {
+    public static int chooseOption() {
 
-        switch (option) {
-        case 0:
+        System.out.print("\nBitte wählen sie eine Option\n");
+        return input.nextInt();
+    }
 
-        case 1:
+    public static void ausfuehrenFunktion(ArrayList<String> menue, int option, Object o)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
-        case 2:
-
-        case 3:
-
-        case 4:
-
-        case 5:
-
-        case 6:
-
-        }
+        Method method = Dialog.class.getDeclaredMethod(Lib_String.RemoveAllWhitespaces(menue.get(option - 1)));
+        method.invoke(o);
 
     }
 
