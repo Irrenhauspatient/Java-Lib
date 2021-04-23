@@ -21,7 +21,7 @@ public class Lib_Dialog {
             IllegalAccessException, InvocationTargetException, InstantiationException {
         dialog = new Dialog();
         input = new Scanner(System.in);
-        Class<?> cls = Class.forName("Dialog");
+        Class<?> cls = Class.forName(CLASSNAME);
         Object o = cls.getDeclaredConstructor().newInstance();
 
         while (option != ENDE) {

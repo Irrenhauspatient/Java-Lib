@@ -1,12 +1,5 @@
 import java.text.DecimalFormat;
 
-/**
- * ube14 Klasse mit statischen Methoden
- * 
- * @author Simon Klasen & Andreas Scheuer
- * @version 0.1
- */
-
 public class Lib_Digits {
 
     /**
@@ -72,7 +65,7 @@ public class Lib_Digits {
      * @return String Formatierter String
      */
 
-    public static <T extends Number, K> String numberFormatter(K format, T value) {
+    public static <T extends Number, K> String numberFormatter(T value, K format) {
 
         DecimalFormat df = new DecimalFormat(format.toString());
         String s = df.format(value.doubleValue());

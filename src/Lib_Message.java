@@ -1,9 +1,3 @@
-/**
- * ube14 Klasse mit statischen Methoden
- * 
- * @author Simon Klasen & Andreas Scheuer
- * @version 0.1
- */
 
 public class Lib_Message {
 
@@ -18,7 +12,7 @@ public class Lib_Message {
      * @param fieldname Feldname des Attributes
      * @return String Fehlermeldung
      */
-    public static <T> String errorWrongValueSpan(T min, T max, T value, T fieldname) {
+    public static <T, K> String errorWrongValueSpan(T min, T max, T value, K fieldname) {
         return String.format("Der eingegebene Wert bei %s ist: %s er unterschreitet %s oder überschreitet %s",
                 fieldname.toString(), value.toString(), min.toString(), max.toString());
     }
@@ -33,7 +27,7 @@ public class Lib_Message {
      * @param fieldname Feldname des Attributes
      * @return String Fehlermeldung
      */
-    public static <T> String errorWrongValueMin(T min, T value, T fieldname) {
+    public static <T, K> String errorWrongValueMin(T min, T value, K fieldname) {
         return String.format("Der eingegebene Wert bei %s ist: %s er unterschreitet %s", fieldname.toString(),
                 value.toString(), min.toString());
     }
@@ -48,7 +42,7 @@ public class Lib_Message {
      * @param fieldname Feldname des Attributes
      * @return String Fehlermeldung
      */
-    public static <T> String errorWrongValueMax(T max, T value, T fieldname) {
+    public static <T, K> String errorWrongValueMax(T max, T value, K fieldname) {
         return String.format("Der eingegebene Wert bei %s ist: %s überschreitet %s", fieldname.toString(),
                 value.toString(), max.toString());
     }

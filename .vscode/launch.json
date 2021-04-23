@@ -10,8 +10,5 @@
             "request": "launch",
             "mainClass": "${file}"
         }
-    ],
-    "java.project.sourcePaths": [
-        "src"
     ]
 }
