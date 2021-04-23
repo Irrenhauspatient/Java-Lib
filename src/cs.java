@@ -1,11 +1,4 @@
 
-/**
- * Klasse mit statischen Methoden
- * 
- * @author Simon Klasen & Andreas Scheuer
- * @version 0.1
- */
-
 public class cs {
 
     /**
