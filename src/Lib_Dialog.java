@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 public class Lib_Dialog {
 
-    private static final int ENDE = 6;
     private int option = -1;
-
     private static Scanner input;
     private static int optioncounter;
 
@@ -20,6 +18,7 @@ public class Lib_Dialog {
             IllegalAccessException, InvocationTargetException, InstantiationException {
 
         input = new Scanner(System.in);
+        final int ENDE = Lib_Arrays.countArrayListIndex(menue) + 1;
 
         Class<?> cls = Class.forName(className);
         Object o = cls.getDeclaredConstructor().newInstance();
