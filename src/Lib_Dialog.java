@@ -6,22 +6,22 @@ import java.util.Scanner;
 
 public class Lib_Dialog {
 
-    // TODO : Replace Dialog dialog with the Dialog Class name
-
-    private static final int ENDE = 0;
+    private static final int ENDE = 6;
     private int option = -1;
-    private Dialog dialog;
+
     private static Scanner input;
+    private static int optioncounter;
 
     /**
      * Eigentliche Startmethode
      */
 
-    public void start(ArrayList<String> menue) throws ClassNotFoundException, NoSuchMethodException,
+    public void start(ArrayList<String> menue, String className) throws ClassNotFoundException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, InstantiationException {
-        dialog = new Dialog();
+
         input = new Scanner(System.in);
-        Class<?> cls = Class.forName(CLASSNAME);
+
+        Class<?> cls = Class.forName(className);
         Object o = cls.getDeclaredConstructor().newInstance();
 
         while (option != ENDE) {
@@ -29,21 +29,20 @@ public class Lib_Dialog {
                 printMenue(menue);
                 option = chooseOption();
                 ausfuehrenFunktion(menue, option, o);
-            } catch (IllegalArgumentException msg) {
-                System.out.println("\n" + msg);
             } catch (InputMismatchException msg) {
                 System.out.println("\n" + msg + ": Kein korrekter Wert");
                 input.nextLine();
-            } catch (Exception msg) {
-                msg.printStackTrace();
+            } catch (Exception e) {
+                System.out.println(e.getCause());
             }
         }
+
     }
 
-    public static <T> void printMenue(ArrayList<T> arraylist) {
+    public static <T> int printMenue(ArrayList<T> arraylist) {
 
         StringBuilder sb = new StringBuilder();
-        int optioncounter = 0;
+        optioncounter = 0;
 
         for (T string : arraylist) {
 
@@ -52,6 +51,7 @@ public class Lib_Dialog {
 
         }
         System.out.println(sb);
+        return optioncounter;
 
     }
 
@@ -66,7 +66,6 @@ public class Lib_Dialog {
 
         Method method = Dialog.class.getDeclaredMethod(Lib_String.RemoveAllWhitespaces(menue.get(option - 1)));
         method.invoke(o);
-
     }
 
 }
