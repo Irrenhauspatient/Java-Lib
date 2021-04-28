@@ -12,6 +12,9 @@ public class Lib_Dialog {
 
     /**
      * Eigentliche Startmethode
+     * 
+     * @param menue     Arrayliste die alle Menuepunkte übergibt
+     * @param className Klassenname als String der übergeben wird
      */
 
     public void start(ArrayList<String> menue, String className) throws ClassNotFoundException, NoSuchMethodException,
@@ -38,28 +41,45 @@ public class Lib_Dialog {
 
     }
 
-    public static <T> int printMenue(ArrayList<T> arraylist) {
+    /**
+     * Methode zur Ausgabe eines Wahlmenues
+     * 
+     * @param arraylist Arrayliste anhand der das Menue erstellt wird
+     */
+    public static void printMenue(ArrayList<String> arraylist) {
 
         StringBuilder sb = new StringBuilder();
         optioncounter = 0;
-
-        for (T string : arraylist) {
+        System.out.println("");
+        for (String string : arraylist) {
 
             optioncounter++;
             sb.append(String.format("%d: %s\n", optioncounter, string));
 
         }
         System.out.println(sb);
-        return optioncounter;
 
     }
 
+    /**
+     * Methode für die Optionsabfrage des Menues
+     * 
+     * @return int Menuepunkt
+     */
     public static int chooseOption() {
 
         System.out.print("\nBitte wählen sie eine Option\n");
         return input.nextInt();
     }
 
+    /**
+     * Methode zum ausführen der entsprechenden Logik die hinter dem Menuepunkt
+     * liegt
+     * 
+     * @param option Optionsauswahl von chooseOption()
+     * @param menue  Arrayliste aus der gewünschte Methodennamen extrahiert wird
+     * @param o      Klassenobjekt das übergeben wird
+     */
     public static void ausfuehrenFunktion(ArrayList<String> menue, int option, Object o)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
