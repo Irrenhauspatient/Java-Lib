@@ -71,4 +71,12 @@ public class Lib_Message {
         return String.format("Der angegeben Index %s ist nicht belegt", index.toString());
     }
 
+    /**
+     * Fehlermeldung für Lib_File existent()
+     * 
+     * 
+     */
+    public static String errorFileNotFound(String fieldname) {
+        return String.format("Die folgende Datei %s wurde nicht gefunden", fieldname);
+    }
 }
