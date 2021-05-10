@@ -12,35 +12,32 @@ import java.util.ArrayList;
 
 public class Lib_File {
 
-    public static ArrayList<Object> deserializeObjects(File file) throws IOException, ClassNotFoundException {
+    public static void serialize(Object object, String filename) throws IOException {
 
-        ArrayList<Object> objects = new ArrayList<Object>();
-
-        FileInputStream fis = new FileInputStream(file);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-
-        objects.add(ois.readObject());
-
-        ois.close();
-        fis.close();
-
-        return objects;
-
-    }
-
-    public static File serializeArrayList(ArrayList<Object> objects) throws IOException {
-
-        File file = File.createTempFile("temp", ".tmp");
+        File file = new File(filename);
 
         FileOutputStream fos = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-        oos.writeObject(objects);
+        oos.writeObject(object);
 
         oos.close();
         fos.close();
+    }
 
-        return file;
+    public static Object deserialize(String filename) throws IOException, ClassNotFoundException {
+
+        File file = new File(filename);
+
+        FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+
+        Object object = (ois.readObject());
+
+        ois.close();
+        fis.close();
+
+        return object;
     }
 
     public static ArrayList<String> readLinebyLine(String filename) throws IOException {
@@ -68,4 +65,5 @@ public class Lib_File {
         }
         filewriter.close();
     }
+
 }
