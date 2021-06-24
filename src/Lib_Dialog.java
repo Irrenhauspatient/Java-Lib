@@ -4,37 +4,37 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/* In die Main einfügen
+*
+* classObject = new Main(); - (Main representiert die Klasse in der die Dialog Logik hinterlegt ist)
+*
+*/
+
 public class Lib_Dialog {
 
     private int option = -1;
-    private static Scanner input;
+    public static Scanner input;
     private static int optioncounter;
 
     /**
      * Eigentliche Startmethode
-     * 
-     * @param menue     Arrayliste die alle Menuepunkte übergibt
-     * @param className Klassenname als String der übergeben wird
      */
 
-    public void start(ArrayList<String> menue, String className) throws ClassNotFoundException, NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+    public void start(ArrayList<String> menue, Object classObject) {
 
         input = new Scanner(System.in);
-        final int ENDE = Lib_Arrays.countArrayListIndex(menue) + 1;
-
-        Class<?> cls = Class.forName(className);
-        Object o = cls.getDeclaredConstructor().newInstance();
+        final int ENDE = -5;
 
         while (option != ENDE) {
             try {
                 printMenue(menue);
-                option = chooseOption();
-                ausfuehrenFunktion(menue, option, o);
+                option = chooseOption(menue);
+                ausfuehrenFunktion(menue, option, classObject);
             } catch (InputMismatchException msg) {
                 System.out.println("\n" + msg + ": Kein korrekter Wert");
                 input.nextLine();
             } catch (Exception e) {
+                System.out.println(e);
                 System.out.println(e.getCause());
             }
         }
@@ -46,12 +46,13 @@ public class Lib_Dialog {
      * 
      * @param arraylist Arrayliste anhand der das Menue erstellt wird
      */
-    public static void printMenue(ArrayList<String> arraylist) {
+
+    public static <T> void printMenue(ArrayList<T> arraylist) {
 
         StringBuilder sb = new StringBuilder();
         optioncounter = 0;
         System.out.println("");
-        for (String string : arraylist) {
+        for (T string : arraylist) {
 
             optioncounter++;
             sb.append(String.format("%d: %s\n", optioncounter, string));
@@ -62,14 +63,19 @@ public class Lib_Dialog {
     }
 
     /**
-     * Methode für die Optionsabfrage des Menues
+     * Methode für die Optionsanfrage des Menues
      * 
      * @return int Menuepunkt
      */
-    public static int chooseOption() {
 
-        System.out.print("\nBitte wählen sie eine Option\n");
-        return input.nextInt();
+    public static int chooseOption(ArrayList<String> menue) {
+
+        System.out.print("\nPlease choose a Option\n");
+        int options = input.nextInt();
+
+        Lib_Digits.checkSpan(1, menue.size(), options, "Option");
+        return options;
+
     }
 
     /**
@@ -77,14 +83,13 @@ public class Lib_Dialog {
      * liegt
      * 
      * @param option Optionsauswahl von chooseOption()
-     * @param menue  Arrayliste aus der gewünschte Methodennamen extrahiert wird
-     * @param o      Klassenobjekt das übergeben wird
      */
-    public static void ausfuehrenFunktion(ArrayList<String> menue, int option, Object o)
+
+    public static void ausfuehrenFunktion(ArrayList<String> menue, int option, Object classObject)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
-        Method method = o.getClass().getDeclaredMethod(Lib_String.RemoveAllWhitespaces(menue.get(option - 1)));
-        method.invoke(o);
+        Method method = classObject.getClass().getMethod(Lib_String.menueToMethod(menue.get(option - 1)));
+        method.invoke(classObject);
     }
 
 }
